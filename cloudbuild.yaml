@@ -14,4 +14,4 @@ steps:
       - '--entry-point=main'
       - '--trigger-http'
       - '--allow-unauthenticated'
-      - '--set-env-vars=NASA_BASE_URL=https://api.nasa.gov/neo/rest/v1/feed?,NASA_API_KEY=KTgvkik8C778RRO4sxdwxdorP2GvgVV8eBPcpyPm'
+      - '--set-env-vars=NASA_BASE_URL=https://api.nasa.gov/neo/rest/v1/feed?,NASA_API_KEY=KTgvkik8C778RRO4sxdwxdorP2GvgVV8eBPcpyPm,ASTEROIDS_BUCKET=astreoids-bucket'
