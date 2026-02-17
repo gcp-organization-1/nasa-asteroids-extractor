@@ -1,0 +1,17 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+steps:
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    args:
+      - 'gcloud'
+      - 'functions'
+      - 'deploy'
+      - 'asteroids-extractor'
+      - '--gen2'
+      - '--region=europe-west1'
+      - '--source=.'
+      - '--runtime=python312'
+      - '--entry-point=main'
+      - '--trigger-http'
+      - '--allow-unauthenticated'
+      - '--set-env-vars=NASA_BASE_URL=https://api.nasa.gov/neo/rest/v1/feed?,NASA_API_KEY=KTgvkik8C778RRO4sxdwxdorP2GvgVV8eBPcpyPm'
