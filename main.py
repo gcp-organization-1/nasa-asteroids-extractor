@@ -1,4 +1,5 @@
 from extractor.asteroids_extractor import AsteroidsExtractor
+from gcp.gcs import GCSClient
 
 def main(request):
     request_json = request.get_json(silent=True)
@@ -12,8 +13,11 @@ def main(request):
 
 
     extractor = AsteroidsExtractor(start_date, end_date)
+    gcs = GCSClient()
+    filename = f"extracted/asteroids_{start_date}_{end_date}.json"
     try:
         data = extractor.get_asteroids_data()
-        return data
+        gcs.upload_raw_data_to_gcs(data, filename)
+        return {"message": "Extract complete", "file_path": filename}
     except Exception as e:
         return {"error": str(e)}, 500
