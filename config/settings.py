@@ -8,5 +8,7 @@ load_dotenv()
 class Settings:
     API_KEY = os.getenv("NASA_API_KEY")
     API_BASE_URL = os.getenv("NASA_BASE_URL")
+    ASTEROIDS_BUCKET = os.getenv("ASTEROIDS_BUCKET")
+
 
 settings = Settings()
