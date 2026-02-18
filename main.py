@@ -1,5 +1,6 @@
 from extractor.asteroids_extractor import AsteroidsExtractor
 from gcp.gcs import GCSClient
+from config.logger import logger
 
 def main(request):
     request_json = request.get_json(silent=True)
@@ -17,7 +18,9 @@ def main(request):
     filename = f"extracted/asteroids_{start_date}_{end_date}.json"
     try:
         data = extractor.get_asteroids_data()
+        logger.info("Uploading raw data to cloud storage", data)
         gcs.upload_raw_data_to_gcs(data, filename)
+        logger.info("Uploaded successfully")
         return {"message": "Extract complete", "file_path": filename}
     except Exception as e:
         return {"error": str(e)}, 500
